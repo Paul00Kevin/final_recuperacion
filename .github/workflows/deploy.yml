@@ -42,8 +42,10 @@ jobs:
       - name: 🏗️ Build and push Docker image
         uses: docker/build-push-action@v6
         with:
+          context: .
+          file: ./kevin
           push: true
-          tags: ghcr.io/omarjb20/chimborazo:1.0.5
+          tags: ghcr.io/paul00kevin/benalcazar:3.0.0
 
       - name: Mostrar variables basicas (solo locales, no secretos)
         run: |
@@ -97,6 +99,6 @@ jobs:
 
             # Paso 3: Desplegar stack
             echo "==> Desplegando stack..."
-            docker stack deploy -c stack.yml --with-registry-auth benalcazar
+            docker stack deploy -c kevin.yml --with-registry-auth benalcazar
 
             docker ps

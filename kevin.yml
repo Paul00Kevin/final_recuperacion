@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   benalcazar:
-    image: ghcr.io/paul00kevin/benalcazar:1.0.5
+    image: ghcr.io/paul00kevin/benalcazar:3.0.0
     deploy:
       replicas: 1
       resources:
