@@ -3,7 +3,7 @@
 #	docker build -t finalquintoa:latest .
 
 #deploy:
-#	docker stack deploy --with-registry-auth -c stack.yml quinto
+#	docker kevin deploy --with-registry-auth -c kevin.yml quinto
 
 #rm:
-#	docker stack rm quinto
+#	docker kevin rm quinto

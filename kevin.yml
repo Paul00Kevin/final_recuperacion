@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  benalcazar:
+    image: ghcr.io/paul00kevin/benalcazar:1.0.5
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.benalcazar.entrypoints=http"
+        - "traefik.http.routers.benalcazar.rule=Host(`benalcazar.byronrm.com`)"
+        - "traefik.http.middlewares.benalcazar-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.benalcazar.middlewares=benalcazar-https-redirect"
+        - "traefik.http.routers.benalcazar-secure.entrypoints=https"
+        - "traefik.http.routers.benalcazar-secure.rule=Host(`benalcazar.byronrm.com`)"
+        - "traefik.http.routers.benalcazar-secure.tls=true"
+        - "traefik.http.routers.benalcazar-secure.tls.certresolver=http"
+        - "traefik.http.routers.benalcazar-secure.service=benalcazar"
+        - "traefik.http.services.benalcazar.loadbalancer.server.port=5000"
+        - "traefik.docker.network=traefik-public"
+
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true

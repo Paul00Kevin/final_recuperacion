@@ -2,7 +2,7 @@ name: Python application
 
 on:
   push:
-    branches: [ chimborazo ]
+    branches: [ benalcazar ]
 
 permissions:
   contents: read
@@ -88,15 +88,15 @@ jobs:
             cd ~/despliegue
 
             # Paso 1: Descargar la imagen
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u omarjb20 --password-stdin
-            docker pull ghcr.io/omarjb20/chimborazo:1.0.5
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u paul00kevin --password-stdin
+            docker pull ghcr.io/paul00kevin/benalcazar:3.0.0
 
             # Paso 2: Borrar el stack anterior
-            docker stack rm chimborazo || true
+            docker stack rm benalcazar || true
             sleep 30
 
             # Paso 3: Desplegar stack
             echo "==> Desplegando stack..."
-            docker stack deploy -c stack.yml --with-registry-auth chimborazo
+            docker stack deploy -c stack.yml --with-registry-auth benalcazar
 
             docker ps
