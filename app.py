@@ -12,7 +12,7 @@ responses = [
 
 @app.route("/")
 def home():
-    return "EXAMEN DEVOPS"
+    return "RECUPERACION"
 
 @app.route("/ia", methods=["POST"])
 def ia():
